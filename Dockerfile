@@ -1,6 +1,6 @@
 # Self-hosted Sums (server mode): the app only, no website.
 # Build: docker build -t sums .   Run: see docker-compose.yml
-FROM node:24-bookworm-slim AS build
+FROM node:26-bookworm-slim AS build
 WORKDIR /repo
 ENV NEXT_TELEMETRY_DISABLED=1
 # better-sqlite3 compiles its native module during install.
@@ -16,7 +16,7 @@ COPY packages packages
 COPY apps/app apps/app
 RUN pnpm --filter @sums/app build
 
-FROM node:24-bookworm-slim AS runtime
+FROM node:26-bookworm-slim AS runtime
 ARG VERSION=dev
 LABEL org.opencontainers.image.title="Sums" \
       org.opencontainers.image.description="Household budget planner: see what is left each month." \
