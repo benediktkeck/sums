@@ -2,7 +2,7 @@
 # Then open http://<this machine>:3000. The plan lives in the "sums-data" volume.
 services:
   sums:
-    image: ghcr.io/OWNER/sums:1
+    image: ghcr.io/benediktkeck/sums:1
     restart: unless-stopped
     ports:
       - "3000:3000"

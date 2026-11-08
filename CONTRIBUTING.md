@@ -10,6 +10,21 @@ Thanks for helping. Sums is a small project run in spare time, so a short note b
 - Everything must work in both storage modes (server and local).
 - Changing the plan's shape means bumping `SCHEMA_VERSION` and adding a migration in `packages/core/src/model/parse.ts`.
 
+## Project layout
+
+| Folder | What |
+|---|---|
+| `apps/app` | The planner (Next.js). This is what the Docker image contains. |
+| `apps/web` | The project website with the landing page. Not part of self-hosting. |
+| `packages/core` | Plan model, calculation engine, formatting, demo plan. Pure TypeScript. |
+| `packages/ui` | Pieces both apps share: logo, design tokens, analytics client. |
+
+```bash
+pnpm dev                       # the app on http://localhost:3000, plans stored in SQLite
+SUMS_STORAGE=local pnpm dev    # the app with plans kept in the browser
+pnpm dev:web                   # the website on http://localhost:3001
+```
+
 [AGENTS.md](AGENTS.md) has the full list of conventions and where things live.
 
 ## Before you open a pull request
