@@ -1,0 +1,25 @@
+{
+  "name": "@sums/core",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Plan model, calculation engine and formatting: pure TypeScript, no React or Next.",
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.3",
+    "typescript": "^5",
+    "vitest": "^5.0.5"
+  }
+}

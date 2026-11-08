@@ -1,0 +1,181 @@
+/* Design tokens and base styles shared by the app and the website. Import after tailwindcss. */
+@custom-variant dark (&:is([data-theme="dark"] *));
+
+/*
+ * Design tokens follow the approved prototype ("B · Mitte").
+ * Prototype names that collide with shadcn tokens are renamed:
+ *   accent → --brand, input background → --field.
+ */
+:root {
+  --maxw: 1640px;
+  --brand: #ff6b35;
+  --font: var(--font-geist-sans), Inter, system-ui, sans-serif;
+  --radius: 0.625rem;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0c0c0e;
+  --panel: #141417;
+  --raised: #1a1a1e;
+  --hover: #1f1f24;
+  --field: #101013;
+  --line: #ffffff14;
+  --line-2: #ffffff24;
+  --line-3: #ffffff3a;
+  --fg: #f7f7f8;
+  --fg-2: #c4c4cc;
+  --fg-3: #8e8e98;
+  --pos: #4ade80;
+  --neg: #f87171;
+  --sav: #facc15;
+  --c1: #60a5fa;
+  --c2: #fb923c;
+  --c3: #2dd4bf;
+  --c4: #f472b6;
+  --c5: #a3e635;
+  --c-var: #c084fc;
+  /* section colors (summary bar) – neutral so they never clash with category colors */
+  --s-fixed: #a1a1aa;
+  --s-var: #63636e;
+  /* savings accounts – validated categorical order (dark steps) */
+  --acc-1: #3987e5;
+  --acc-2: #199e70;
+  --acc-3: #9085e9;
+  --acc-4: #c98500;
+  --acc-5: #d55181;
+  --acc-6: #008300;
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f6f7;
+  --panel: #ffffff;
+  --raised: #ffffff;
+  --hover: #f1f1f3;
+  --field: #ffffff;
+  --line: #00000012;
+  --line-2: #0000001f;
+  --line-3: #00000033;
+  --fg: #111114;
+  --fg-2: #3f3f46;
+  --fg-3: #6b6b74;
+  --pos: #15803d;
+  --neg: #dc2626;
+  --sav: #a16207;
+  --c1: #2563eb;
+  --c2: #ea580c;
+  --c3: #0d9488;
+  --c4: #db2777;
+  --c5: #4d7c0f;
+  --c-var: #9333ea;
+  --s-fixed: #71717a;
+  --s-var: #b9b9c2;
+  --acc-1: #2a78d6;
+  --acc-2: #1baf7a;
+  --acc-3: #6250d6;
+  --acc-4: #eda100;
+  --acc-5: #e87ba4;
+  --acc-6: #008300;
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+}
+
+/* shadcn tokens mapped onto the design tokens */
+:root,
+[data-theme] {
+  --background: var(--bg);
+  --foreground: var(--fg);
+  --card: var(--panel);
+  --card-foreground: var(--fg);
+  --popover: var(--panel);
+  --popover-foreground: var(--fg);
+  --primary: var(--brand);
+  --primary-foreground: #fff;
+  --secondary: var(--raised);
+  --secondary-foreground: var(--fg);
+  --muted: var(--hover);
+  --muted-foreground: var(--fg-3);
+  --accent: var(--hover);
+  --accent-foreground: var(--fg);
+  --destructive: var(--neg);
+  --border: var(--line-2);
+  --input: var(--line-2);
+  --ring: var(--brand);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-raised: var(--raised);
+  --color-hover: var(--hover);
+  --color-field: var(--field);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --color-line-3: var(--line-3);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  --color-pos: var(--pos);
+  --color-neg: var(--neg);
+  --color-sav: var(--sav);
+  --color-brand: var(--brand);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html,
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 14.5px/1.5 var(--font);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-image: radial-gradient(
+      900px 300px at 70% -120px,
+      color-mix(in srgb, var(--brand) 8%, transparent),
+      transparent 70%
+    );
+    background-repeat: no-repeat;
+    min-height: 100dvh;
+    padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+    -webkit-tap-highlight-color: transparent;
+  }
+  button {
+    cursor: pointer;
+  }
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+}

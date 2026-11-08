@@ -1,0 +1,26 @@
+# Private household data and local design references (never commit)
+/local/
+*.xlsx
+*.db
+*.db-journal
+*.sqlite
+data/
+
+node_modules/
+.next/
+out/
+coverage/
+.env*
+!.env.example
+
+# Next.js / tooling
+/.pnp
+.pnp.*
+/build
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+*.pem
+npm-debug.log*
+.pnpm-debug.log*
+.vercel

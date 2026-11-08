@@ -1,0 +1,1056 @@
+@import "tailwindcss";
+@import "@sums/ui/styles/base.css";
+@import "@sums/ui/styles/shared.css";
+
+@layer components {
+  /* landing page (public start page, outside the app) */
+  .lp {
+    --lp-glow: color-mix(in srgb, var(--brand) 30%, transparent);
+    --lp-grad: linear-gradient(100deg, var(--brand) 10%, #ffb380 60%, #ffd6a8);
+    /* A dot grid, as a background layer. */
+    --lp-dots: radial-gradient(circle at 1px 1px, var(--line-3) 1px, transparent 1.2px) 0 0 / 24px 24px;
+    --lp-ease: cubic-bezier(0.23, 1, 0.32, 1);
+    overflow-x: clip;
+    background: var(--bg);
+  }
+  .lp-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .lp-nav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    padding-top: env(safe-area-inset-top);
+    background: color-mix(in srgb, var(--bg) 72%, transparent);
+    backdrop-filter: blur(14px) saturate(1.4);
+    border-bottom: 1px solid var(--line);
+  }
+  .lp-nav-in {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .lp-nav-links {
+    display: flex;
+    gap: 26px;
+    margin-right: auto;
+    font-size: 14.5px;
+    color: var(--fg-2);
+  }
+  .lp-nav-links a:hover {
+    color: var(--fg);
+  }
+  .lp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 50px;
+    padding: 0 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15.5px;
+    border: 1px solid var(--line-2);
+    background: color-mix(in srgb, var(--panel) 70%, transparent);
+    transition:
+      transform 0.2s var(--lp-ease),
+      box-shadow 0.2s,
+      background 0.2s;
+    white-space: nowrap;
+  }
+  .lp-btn:active {
+    transform: scale(0.97);
+    transition-duration: 0.08s;
+  }
+  .lp-btn:hover {
+    background: var(--hover);
+    transform: translateY(-1px);
+  }
+  .lp-btn.primary {
+    border-color: transparent;
+    background: var(--brand);
+    color: #fff;
+    box-shadow:
+      0 10px 30px -8px var(--lp-glow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .lp-btn.primary:hover {
+    background: color-mix(in srgb, var(--brand) 88%, #fff);
+    box-shadow: 0 14px 36px -8px color-mix(in srgb, var(--brand) 55%, transparent);
+  }
+  .lp-btn.sm {
+    height: 38px;
+    padding: 0 16px;
+    border-radius: 10px;
+    font-size: 14px;
+  }
+  .lp-btn svg {
+    transition: transform 0.25s var(--lp-ease);
+  }
+  .lp-btn:hover svg {
+    transform: translateX(3px);
+  }
+  .lp-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .lp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--brand);
+  }
+  .lp-grad {
+    background: var(--lp-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* hero */
+  .lp-hero {
+    position: relative;
+    padding: 72px 0 96px;
+    isolation: isolate;
+  }
+  .lp-hero::before {
+    content: "";
+    position: absolute;
+    inset: -120px 0 0;
+    z-index: -1;
+    background:
+      radial-gradient(48% 52% at 78% 18%, var(--lp-glow), transparent 70%),
+      radial-gradient(40% 40% at 10% 0%, color-mix(in srgb, var(--brand) 10%, transparent), transparent 70%);
+  }
+  .lp-hero::after {
+    content: "";
+    position: absolute;
+    inset: -64px 0 0;
+    z-index: -1;
+    background: var(--lp-dots);
+    mask-image: radial-gradient(70% 60% at 60% 20%, #000 20%, transparent 75%);
+  }
+  .lp-hero-in {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: 56px;
+    align-items: center;
+  }
+  .lp-hero h1 {
+    margin: 18px 0 0;
+    font-size: clamp(42px, 6vw, 74px);
+    font-weight: 720;
+    letter-spacing: -0.045em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  .lp-lead {
+    margin: 22px 0 32px;
+    max-width: 54ch;
+    font-size: 18.5px;
+    line-height: 1.6;
+    color: var(--fg-2);
+  }
+  .lp-checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin: 28px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+    color: var(--fg-3);
+  }
+  .lp-checks li {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .lp-checks svg {
+    color: var(--pos);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .lp-hero-copy > *,
+    .lp-demo {
+      animation: lp-rise 0.9s var(--lp-ease) both;
+    }
+    .lp-hero-copy > :nth-child(2) {
+      animation-delay: 0.06s;
+    }
+    .lp-hero-copy > :nth-child(3) {
+      animation-delay: 0.12s;
+    }
+    .lp-hero-copy > :nth-child(n + 4) {
+      animation-delay: 0.18s;
+    }
+    .lp-demo {
+      animation-delay: 0.22s;
+    }
+  }
+  @keyframes lp-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+      filter: blur(6px);
+    }
+  }
+
+  /* hero demo card */
+  .lp-demo {
+    position: relative;
+    padding: 24px;
+    border-radius: 20px;
+    background: color-mix(in srgb, var(--panel) 88%, transparent);
+    border: 1px solid var(--line-2);
+    box-shadow:
+      var(--shadow),
+      0 0 0 1px color-mix(in srgb, var(--brand) 10%, transparent),
+      0 40px 120px -40px var(--lp-glow);
+    backdrop-filter: blur(10px);
+  }
+  .lp-demo-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .lp-pill {
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--fg-3);
+  }
+  .lp-demo-free {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .lp-demo-free b {
+    font-size: clamp(40px, 5vw, 54px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .lp-demo-sub {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: var(--fg-3);
+  }
+  .lp-demo-sub b {
+    color: var(--fg-2);
+  }
+  .lp-delta {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 0 8px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .lp-delta.up {
+    color: var(--pos);
+    background: color-mix(in srgb, var(--pos) 14%, transparent);
+  }
+  .lp-delta.down {
+    color: var(--neg);
+    background: color-mix(in srgb, var(--neg) 14%, transparent);
+  }
+  .lp-demo-bar {
+    display: flex;
+    gap: 3px;
+    height: 10px;
+    margin: 18px 0 14px;
+  }
+  .lp-demo-bar i {
+    flex-basis: 0;
+    min-width: 4px;
+    border-radius: 3px;
+    transition: flex-grow 1.1s var(--lp-ease);
+  }
+  .lp-demo-lines {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 24px;
+    margin: 0;
+    font-size: 13.5px;
+  }
+  .lp-demo-lines div {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .lp-demo-lines dt {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--fg-3);
+  }
+  .lp-demo-lines dt i {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+  }
+  .lp-demo-lines dd {
+    margin: 0;
+    color: var(--fg-2);
+  }
+  .lp-demo-scen {
+    display: grid;
+    gap: 6px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  .lp-demo-scen-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--fg-2);
+  }
+  .lp-demo-auto {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 24px;
+    padding: 0 9px;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    background: transparent;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--fg-3);
+    transition:
+      color 0.15s,
+      border-color 0.15s,
+      transform 0.15s var(--lp-ease);
+  }
+  .lp-demo-auto:hover {
+    color: var(--fg);
+    border-color: var(--line-3);
+  }
+  .lp-demo-auto:active {
+    transform: scale(0.95);
+  }
+  .lp-scen-list {
+    display: grid;
+    gap: 6px;
+  }
+  /* Invisible timer for the autoplay: its end advances the tour (see hero-demo.tsx). */
+  .lp-demo-timer {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+    animation: lp-timer linear both;
+  }
+  @keyframes lp-timer {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(1px);
+    }
+  }
+  /* Hovering or keyboard focus holds the tour, so nothing changes while someone reads. */
+  @media (hover: hover) {
+    .lp-demo:hover .lp-demo-timer {
+      animation-play-state: paused;
+    }
+  }
+  .lp-demo:has(:focus-visible) .lp-demo-timer {
+    animation-play-state: paused;
+  }
+  /* Numbers tint while they count towards a new value. */
+  .lp-demo :is(.lp-demo-free b, .lp-demo-sub b, .lp-demo-lines dd) {
+    display: inline-block;
+    transition:
+      color 0.6s,
+      transform 0.6s var(--lp-ease);
+  }
+  .lp-demo :is(.lp-demo-free b, .lp-demo-sub b, .lp-demo-lines dd).moving {
+    transition-duration: 0.15s;
+  }
+  .lp-demo .moving.up {
+    color: var(--pos);
+  }
+  .lp-demo .moving.down {
+    color: var(--neg);
+  }
+  .lp-demo-free b.moving.up {
+    transform: translateY(-3px);
+  }
+  .lp-demo-free b.moving.down {
+    transform: translateY(3px);
+  }
+  .lp-demo-delta {
+    transition:
+      opacity 0.4s,
+      transform 0.5s var(--lp-ease),
+      filter 0.4s,
+      color 0.4s,
+      background 0.4s;
+  }
+  .lp-demo-delta.hidden {
+    opacity: 0;
+    transform: scale(0.85) translateX(-6px);
+    filter: blur(3px);
+  }
+  .lp-scen {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 9px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--field);
+    text-align: left;
+    font-size: 14.5px;
+    transition:
+      border-color 0.5s,
+      background 0.5s,
+      transform 0.15s var(--lp-ease);
+  }
+  .lp-scen:hover {
+    border-color: var(--line-3);
+  }
+  .lp-scen:active {
+    transform: scale(0.98);
+  }
+  .lp-scen .sw,
+  .lp-scen .sw::after {
+    transition-duration: 0.45s;
+    transition-timing-function: var(--lp-ease);
+  }
+  .lp-scen.on {
+    border-color: color-mix(in srgb, var(--brand) 55%, transparent);
+    background: color-mix(in srgb, var(--brand) 8%, var(--field));
+  }
+  .lp-scen-name {
+    flex: 1;
+    font-weight: 500;
+  }
+
+  /* sections */
+  .lp-section {
+    padding: 104px 0 0;
+    scroll-margin-top: 40px;
+  }
+  .lp-section-head {
+    max-width: 680px;
+    margin-bottom: 40px;
+  }
+  .lp-section h2 {
+    margin: 12px 0 0;
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  .lp-section-head p {
+    margin: 14px 0 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--fg-2);
+  }
+
+  /* feature bento */
+  .lp-bento {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .lp-card {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 26px;
+    border-radius: 18px;
+    background: var(--panel);
+    border: 1px solid var(--line-2);
+    transition:
+      border-color 0.3s,
+      transform 0.4s var(--lp-ease);
+  }
+  /* Soft light that follows the pointer (position set by landing-motion.tsx). */
+  .lp-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--brand) 9%, transparent), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+  @media (hover: hover) {
+    .lp-card:hover {
+      border-color: var(--line-3);
+      transform: translateY(-3px);
+    }
+    .lp-card:hover::before {
+      opacity: 1;
+    }
+  }
+  .lp-card.wide {
+    grid-column: span 2;
+    flex-direction: row;
+    align-items: center;
+  }
+  .lp-card.wide > * {
+    flex: 1;
+    min-width: 0;
+  }
+  .lp-card h3 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+  .lp-card-text p {
+    margin: 8px 0 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--fg-2);
+  }
+  .lp-vis {
+    margin-top: auto;
+    padding: 16px;
+    border-radius: 14px;
+    background: var(--field);
+    border: 1px solid var(--line);
+    font-size: 13.5px;
+  }
+  .lp-card.wide .lp-vis {
+    margin-top: 0;
+  }
+  .lp-chips {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .lp-chip {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    font-weight: 500;
+  }
+  .lp-chip .lp-delta {
+    margin-left: auto;
+  }
+  .lp-split {
+    display: grid;
+    gap: 12px;
+  }
+  .lp-split-row {
+    display: grid;
+    grid-template-columns: 26px 46px 1fr auto;
+    align-items: center;
+    gap: 10px;
+  }
+  .lp-av {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .lp-meter {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--line-2);
+    overflow: hidden;
+  }
+  .lp-meter i {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--pos);
+    transform-origin: left;
+  }
+  .lp-split-foot,
+  .lp-yearly-foot {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+    color: var(--fg-3);
+  }
+  .lp-split-foot b {
+    color: var(--brand);
+  }
+  .lp-yearly {
+    display: grid;
+    gap: 10px;
+  }
+  .lp-yearly-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .lp-yearly-name {
+    display: grid;
+    font-weight: 500;
+  }
+  .lp-yearly-name small {
+    font-weight: 400;
+    color: var(--fg-3);
+    font-size: 12px;
+  }
+  .lp-yearly-row b {
+    color: var(--sav);
+  }
+  .lp-yearly-foot {
+    justify-content: flex-end;
+    font-size: 12px;
+  }
+  .lp-growth-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: var(--fg-3);
+  }
+  .lp-growth-head b {
+    font-size: 20px;
+    color: var(--fg);
+    letter-spacing: -0.02em;
+  }
+  .lp-growth {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+  }
+  .lp-history {
+    display: grid;
+    gap: 8px;
+  }
+  .lp-history-row {
+    display: grid;
+    grid-template-columns: 14px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    color: var(--fg-2);
+  }
+  .lp-history-row span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .lp-history-row svg {
+    color: var(--fg-3);
+  }
+  .lp-history-row small {
+    color: var(--fg-3);
+    font-size: 12px;
+  }
+  .lp-history-row.saved span {
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .lp-history-row.saved svg {
+    color: var(--brand);
+  }
+  .lp-table {
+    display: grid;
+    gap: 8px;
+  }
+  .lp-table-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--fg-2);
+  }
+  .lp-table-row i {
+    display: inline-block;
+    width: 16px;
+    font-style: normal;
+    color: var(--fg-3);
+  }
+  .lp-table-row.total {
+    padding-top: 9px;
+    border-top: 1px solid var(--line);
+    color: var(--fg);
+    font-weight: 650;
+  }
+  .lp-flow {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .lp-flow-node {
+    fill: var(--panel);
+    stroke: var(--line-3);
+  }
+  .lp-flow-node.brand {
+    fill: color-mix(in srgb, var(--brand) 18%, var(--panel));
+    stroke: var(--brand);
+  }
+  .lp-flow-node.sav {
+    stroke: var(--sav);
+  }
+  .lp-flow-label {
+    fill: var(--fg);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .lp-flow-edge {
+    fill: none;
+    stroke: var(--brand);
+    stroke-width: 2;
+    stroke-dasharray: 5 6;
+    opacity: 0.8;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .lp-flow-edge {
+      animation: lp-flow 1.4s linear infinite;
+    }
+  }
+  @keyframes lp-flow {
+    to {
+      stroke-dashoffset: -22;
+    }
+  }
+
+  /* steps */
+  .lp-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .lp-steps li {
+    padding: 26px;
+    border-radius: 18px;
+    border: 1px solid var(--line-2);
+    background: linear-gradient(180deg, var(--panel), transparent);
+  }
+  .lp-step-n {
+    transition: transform 0.5s var(--lp-ease);
+  }
+  @media (hover: hover) {
+    .lp-steps li:hover .lp-step-n {
+      transform: rotate(-8deg) scale(1.08);
+    }
+  }
+  .lp-step-n {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--brand) 14%, transparent);
+    color: var(--brand);
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .lp-steps h3 {
+    margin: 18px 0 0;
+    font-size: 19px;
+    font-weight: 650;
+  }
+  .lp-steps p {
+    margin: 8px 0 0;
+    color: var(--fg-2);
+    line-height: 1.55;
+    font-size: 15px;
+  }
+
+  /* privacy band */
+  .lp-privacy {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 48px;
+    align-items: center;
+    padding: 48px;
+    border-radius: 24px;
+    border: 1px solid var(--line-2);
+    background:
+      radial-gradient(60% 80% at 0% 100%, color-mix(in srgb, var(--pos) 10%, transparent), transparent 70%),
+      var(--panel);
+  }
+  .lp-privacy p {
+    margin: 16px 0 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--fg-2);
+  }
+  .lp-privacy-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .lp-privacy-list li {
+    display: grid;
+    gap: 4px;
+  }
+  .lp-privacy-list svg {
+    color: var(--pos);
+    margin-bottom: 6px;
+  }
+  .lp-privacy-list span {
+    color: var(--fg-3);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* closing call to action and footer */
+  .lp-final {
+    position: relative;
+    padding-bottom: 112px;
+    text-align: center;
+    isolation: isolate;
+  }
+  .lp-final::before {
+    content: "";
+    position: absolute;
+    inset: 40px 0 0;
+    z-index: -1;
+    background: radial-gradient(40% 60% at 50% 70%, var(--lp-glow), transparent 70%);
+  }
+  .lp-final::after {
+    content: "";
+    position: absolute;
+    inset: 40px 0 0;
+    z-index: -1;
+    background: var(--lp-dots);
+    mask-image: radial-gradient(50% 70% at 50% 70%, #000 15%, transparent 75%);
+  }
+  .lp-final p {
+    margin: 14px auto 30px;
+    max-width: 50ch;
+    font-size: 17px;
+    color: var(--fg-2);
+  }
+  .lp-final .lp-ctas {
+    justify-content: center;
+  }
+  .lp-footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0 calc(28px + env(safe-area-inset-bottom));
+  }
+  .lp-footer-in {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+  }
+  .lp-footer-in > .logo {
+    margin-right: auto;
+  }
+  .lp-source {
+    font-size: 13.5px;
+    color: var(--fg-3);
+  }
+  .lp-source:hover {
+    color: var(--brand);
+  }
+
+  /* scroll motion: landing-motion.tsx marks [data-reveal] elements once they scroll in */
+  @media (prefers-reduced-motion: no-preference) {
+    .lp[data-motion] [data-reveal]:not([data-shown]) {
+      opacity: 0;
+    }
+    .lp[data-motion] [data-shown] {
+      animation: lp-reveal 0.9s var(--lp-ease) backwards;
+      animation-delay: calc(var(--i, 0) * 80ms);
+    }
+    .lp[data-motion] .lp-section-head[data-shown] > * {
+      animation: lp-reveal 0.9s var(--lp-ease) backwards;
+    }
+    .lp[data-motion] .lp-section-head[data-shown] > :nth-child(2) {
+      animation-delay: 70ms;
+    }
+    .lp[data-motion] .lp-section-head[data-shown] > :nth-child(3) {
+      animation-delay: 140ms;
+    }
+    .lp[data-motion] .lp-section-head[data-shown] {
+      animation: none;
+    }
+    /* Card contents play once their card is in view. */
+    .lp[data-motion] [data-shown] .lp-meter i {
+      animation: lp-grow 1.1s var(--lp-ease) backwards;
+      animation-delay: calc(var(--i, 0) * 80ms + 250ms);
+    }
+    .lp[data-motion] [data-shown] .lp-growth-line {
+      stroke-dasharray: 1;
+      animation: lp-draw 1.6s var(--lp-ease) backwards;
+      animation-delay: calc(var(--i, 0) * 80ms + 250ms);
+    }
+    .lp[data-motion] [data-shown] .lp-growth-area {
+      animation: lp-fade 1.2s ease backwards;
+      animation-delay: calc(var(--i, 0) * 80ms + 700ms);
+    }
+    .lp[data-motion] [data-shown] :is(.lp-chip, .lp-history-row, .lp-yearly-row, .lp-table-row, .lp-split-row) {
+      animation: lp-slide 0.7s var(--lp-ease) backwards;
+    }
+    .lp[data-motion] [data-shown] :is(.lp-chip, .lp-history-row, .lp-yearly-row, .lp-table-row, .lp-split-row):nth-child(1) {
+      animation-delay: 200ms;
+    }
+    .lp[data-motion] [data-shown] :is(.lp-chip, .lp-history-row, .lp-yearly-row, .lp-table-row, .lp-split-row):nth-child(2) {
+      animation-delay: 260ms;
+    }
+    .lp[data-motion] [data-shown] :is(.lp-chip, .lp-history-row, .lp-yearly-row, .lp-table-row, .lp-split-row):nth-child(3) {
+      animation-delay: 320ms;
+    }
+    .lp[data-motion] [data-shown] :is(.lp-chip, .lp-history-row, .lp-yearly-row, .lp-table-row, .lp-split-row):nth-child(4) {
+      animation-delay: 380ms;
+    }
+    .lp[data-motion] [data-shown] :is(.lp-chip, .lp-history-row, .lp-yearly-row, .lp-table-row, .lp-split-row):nth-child(n + 5) {
+      animation-delay: 440ms;
+    }
+    .lp[data-motion] [data-shown] .lp-privacy-list li {
+      animation: lp-reveal 0.8s var(--lp-ease) backwards;
+    }
+    .lp[data-motion] [data-shown] .lp-privacy-list li:nth-child(2) {
+      animation-delay: 80ms;
+    }
+    .lp[data-motion] [data-shown] .lp-privacy-list li:nth-child(3) {
+      animation-delay: 160ms;
+    }
+    .lp[data-motion] [data-shown] .lp-privacy-list li:nth-child(4) {
+      animation-delay: 240ms;
+    }
+    /* The nav settles into a frosted bar once the page scrolls. */
+    @supports (animation-timeline: scroll()) {
+      .lp-nav {
+        animation: lp-nav-solid linear both;
+        animation-timeline: scroll();
+        animation-range: 0 96px;
+      }
+    }
+  }
+  @keyframes lp-reveal {
+    from {
+      opacity: 0;
+      translate: 0 18px;
+      filter: blur(6px);
+    }
+  }
+  @keyframes lp-slide {
+    from {
+      opacity: 0;
+      translate: -8px 0;
+    }
+  }
+  @keyframes lp-grow {
+    from {
+      transform: scaleX(0);
+    }
+  }
+  @keyframes lp-draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+  }
+  @keyframes lp-fade {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes lp-nav-solid {
+    from {
+      background: transparent;
+      border-bottom-color: transparent;
+      backdrop-filter: none;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .lp-hero-in,
+    .lp-privacy {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .lp-hero {
+      padding: 48px 0 64px;
+    }
+    .lp-bento {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .lp-card.wide {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    /* Seven cards on two columns: let the last one fill its row. */
+    .lp-bento > :last-child {
+      grid-column: span 2;
+    }
+  }
+  @media (max-width: 700px) {
+    .lp-wrap {
+      padding: 0 16px;
+    }
+    .lp-nav-links {
+      display: none;
+    }
+    .lp-nav-in {
+      justify-content: space-between;
+    }
+    .lp-bento,
+    .lp-steps,
+    .lp-privacy-list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .lp-card.wide,
+    .lp-bento > :last-child {
+      grid-column: auto;
+    }
+    .lp-section {
+      padding-top: 72px;
+    }
+    .lp-privacy {
+      padding: 28px 22px;
+      gap: 28px;
+    }
+    .lp-demo {
+      padding: 18px;
+    }
+    .lp-demo-lines {
+      grid-template-columns: 1fr;
+    }
+    .lp-ctas.lg .lp-btn {
+      flex: 1 1 100%;
+    }
+    .lp-lead {
+      font-size: 17px;
+    }
+  }
+
+}

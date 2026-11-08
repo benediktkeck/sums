@@ -1,0 +1,19 @@
+# Self-hosting Sums: docker compose up -d
+# Then open http://<this machine>:3000. The plan lives in the "sums-data" volume.
+services:
+  sums:
+    image: ghcr.io/OWNER/sums:1
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - sums-data:/data
+    environment:
+      # One shared password for the whole installation. Set it as soon as
+      # anyone but you can reach this port.
+      SUMS_PASSWORD: change-me
+      # Optional: name shown in the app.
+      # SUMS_APP_NAME: Sums
+
+volumes:
+  sums-data:

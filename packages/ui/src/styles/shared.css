@@ -1,0 +1,73 @@
+/* Component classes used by both the app and the website. */
+@layer components {
+  .n {
+    font-variant-numeric: tabular-nums;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 650;
+    font-size: 16.5px;
+    letter-spacing: -0.02em;
+    margin-right: 20px;
+  }
+  .logo i {
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    background: var(--brand);
+    display: grid;
+    place-items: center;
+  }
+  .sw {
+    width: 30px;
+    height: 18px;
+    border-radius: 999px;
+    background: var(--line-3);
+    position: relative;
+    flex: none;
+    transition: 0.15s;
+  }
+  .sw::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    transition: 0.15s;
+  }
+  .sw.on,
+  .chip.on .sw {
+    background: var(--brand);
+  }
+  .sw.on::after,
+  .chip.on .sw::after {
+    left: 15px;
+  }
+  .sw-mini {
+    width: 22px;
+    height: 14px;
+  }
+  .sw-mini::after {
+    top: 3px;
+    left: 3px;
+    width: 8px;
+    height: 8px;
+  }
+  .sw-mini.on::after {
+    left: 11px;
+  }
+  .legal-links {
+    display: flex;
+    gap: 16px;
+    font-size: 13.5px;
+    color: var(--fg-3);
+  }
+  .legal-links a:hover {
+    color: var(--brand);
+  }
+}

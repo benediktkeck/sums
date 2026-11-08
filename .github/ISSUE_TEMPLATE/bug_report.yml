@@ -1,0 +1,28 @@
+name: Bug report
+description: Something doesn't work as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead? Please don't paste real amounts or names from your plan.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Shown under Einstellungen → Daten & Sicherung.
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Where does it run?
+      options:
+        - Public website (local mode)
+        - Self-hosted with Docker
+        - From source
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
