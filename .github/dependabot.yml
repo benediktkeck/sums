@@ -7,6 +7,13 @@ updates:
     groups:
       minor-and-patch:
         update-types: [minor, patch]
+    ignore:
+      # Waits for typescript-eslint support of TypeScript 7.
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
+      # Follows the Node.js runtime, which moves to a new major on purpose (image, CI and docs together).
+      - dependency-name: "@types/node"
+        update-types: [version-update:semver-major]
   - package-ecosystem: github-actions
     directory: /
     schedule:
@@ -15,3 +22,7 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    ignore:
+      # 1.x stays on the Node.js 24 LTS; see the @types/node rule above.
+      - dependency-name: node
+        update-types: [version-update:semver-major]
