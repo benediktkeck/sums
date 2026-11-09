@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@sums/core": "workspace:*",
-    "posthog-js": "^1.446.3"
+    "posthog-js": "^1.447.3"
   },
   "peerDependencies": {
     "next": "16.4.5",
